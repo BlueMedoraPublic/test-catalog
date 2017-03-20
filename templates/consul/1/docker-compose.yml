@@ -11,8 +11,8 @@ consul:
   - DNS=${DNS}
   - HTTPPORT=${HTTPPORT}
   - SERVERPORT=${SERVERPORT}
-  - SERF_WANPORT=${SERF_WANPORT}
   - SERF_LANPORT=${SERF_LANPORT}
+  - SERF_WANPORT=${SERF_WANPORT}
   volumes:
   - cccvol:/opt/rancher/config
   - cccvol:/opt/rancher/ssl

@@ -34,7 +34,7 @@
       required: true
     - variable: gossip_key
       label: "Communication gossip key"
-      type: "multiline"
+      type: "string"
       required: true
     - variable: DOMAIN 
       label: "domain for the consul cluster, defaults to 'rancher.internal'"
@@ -52,7 +52,7 @@
       label: "consul serf LAN port, default 8301"
       type: "int"
       required: false
-    - variable: SERF_WANTPORT
+    - variable: SERF_WANPORT
       label: "consul serf WAN port, default 8302"
       type: "int"
       required: false
