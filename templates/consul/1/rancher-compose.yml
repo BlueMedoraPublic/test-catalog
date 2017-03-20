@@ -1,0 +1,88 @@
+.catalog:
+  name: "Consul-Testing"
+  description: "Secure Consul cluster"
+  version: "0.7.5-rancher1"
+  uuid: consul-0
+  questions:
+    - variable: ca_crt
+      label: "CA certificate"
+      type: "multiline"
+      required: true
+    - variable: consul1_key
+      label: "First consul key"
+      type: "multiline"
+      required: true
+    - variable: consul1_crt
+      label: "First consul certificate"
+      type: "multiline"
+      required: true
+    - variable: consul2_key
+      label: "Second consul key"
+      type: "multiline"
+      required: true
+    - variable: consul2_crt
+      label: "Second consul certificate"
+      type: "multiline"
+      required: true
+    - variable: consul3_key
+      label: "Third consul key"
+      type: "multiline"
+      required: true
+    - variable: consul3_crt
+      label: "Third consul certificate"
+      type: "multiline"
+      required: true
+    - variable: gossip_key
+      label: "Communication gossip key"
+      type: "multiline"
+      required: true
+    - variable: DOMAIN 
+      label: "domain for the consul cluster, defaults to 'rancher.internal'"
+      type: "string"
+      required: false
+    - variable: DC
+      label: "Datacenter for this consul cluster, also used as the service name, defaults to 'dc1'"
+      type: "string"
+      required: false
+    - variable: SERVERPORT
+      label: "consul server RPC port, default 8300"
+      type: "int"
+      required: false
+    - variable: SERF_LANPORT
+      label: "consul serf LAN port, default 8301"
+      type: "int"
+      required: false
+    - variable: SERF_WANTPORT
+      label: "consul serf WAN port, default 8302"
+      type: "int"
+      required: false
+    - variable: HTTPPORT
+      label: "consul HTTP port, default 8500"
+      type: "int"
+      required: false
+    - variable: DNS
+      label: "consul DNS port, default 8600"
+      type: "int"
+      required: false
+
+consul:
+  scale: 3
+  retain_ip: true
+  metadata:
+    ca.crt: |
+            ${ca_crt}
+    consul1.crt: |
+            ${consul1_crt}
+    consul1.key: |
+            ${consul1_key}
+    consul2.crt: |
+            ${consul2_crt}
+    consul2.key: |
+            ${consul2_key}
+    consul3.crt: |
+            ${consul3_crt}
+    consul3.key: |
+            ${consul3_key}
+    enc.key: "${gossip_key}"
+    domain: "${DOMAIN}"
+    DC: "${DC}"

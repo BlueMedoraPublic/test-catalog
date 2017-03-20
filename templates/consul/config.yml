@@ -1,0 +1,5 @@
+name: Consul Test Cluster
+description: |
+  Consul cluster
+version: 0.7.5-rancher1
+category: Clustering
