@@ -7,14 +7,14 @@ consul:
   dns:
   - 172.17.0.2
   ports:
-  - ${SERVERPORT}:8300/tcp
-  - ${SERF_LANPORT}:8301/tcp
-  - ${SERF_LANPORT}:8301/udp
-  - ${SERF_WANPORT}:8302/tcp
-  - ${SERF_WANPORT}:8302/udp
-  - ${HTTPPORT}:8500/tcp
-  - ${DNS}:8600/tcp
-  - ${DNS}:8600/udp
+  - "${SERVERPORT}:8300/tcp"
+  - "${SERF_LANPORT}:8301/tcp"
+  - "${SERF_LANPORT}:8301/udp"
+  - "${SERF_WANPORT}:8302/tcp"
+  - "${SERF_WANPORT}:8302/udp"
+  - "${HTTPPORT}:8500/tcp"
+  - "${DNS}:8600/tcp"
+  - "${DNS}:8600/udp"
   environment:
   - DC=${DC}
   - DNS=${DNS}
