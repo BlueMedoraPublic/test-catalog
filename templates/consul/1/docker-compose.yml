@@ -1,5 +1,5 @@
-consul:
-  image: rijalati/consul-rancher
+${DC}:
+  image: rijalati/consul-rancher:0.7.5
   domainname: ${DOMAIN}
   dns_search:
   - rancher.internal
@@ -35,7 +35,7 @@ consul:
     io.rancher.container.hostname_override: container_name
     io.rancher.stack_service.name: ${DC}
 
-consul-conf:
+${DC}-conf:
   image: rijalati/consul-config:0.2
   net: "container:${DC}"
   volumes_from:
