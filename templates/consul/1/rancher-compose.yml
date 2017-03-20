@@ -68,6 +68,15 @@
 consul:
   scale: 3
   retain_ip: true
+  ports:
+  - "${SERVERPORT}:8300/tcp"
+  - "${SERF_LANPORT}:8301/tcp"
+  - "${SERF_LANPORT}:8301/udp"
+  - "${SERF_WANPORT}:8302/tcp"
+  - "${SERF_WANPORT}:8302/udp"
+  - "${HTTPPORT}:8500/tcp"
+  - "${DNS}:8600/tcp"
+  - "${DNS}:8600/udp"
   metadata:
     ca.crt: |
             ${ca_crt}
