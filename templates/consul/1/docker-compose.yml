@@ -28,7 +28,7 @@ consul:
   - cccvol:/var/consul
   labels:
     io.rancher.scheduler.affinity:host_label: dc=${DC}
-    io.rancher.sidekicks: ${DC}-conf
+    io.rancher.sidekicks: consul-conf
     io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=${DC}
     io.rancher.container.dns: true
     io.rancher.container.pull_image: always
