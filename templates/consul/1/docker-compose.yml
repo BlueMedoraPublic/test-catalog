@@ -37,7 +37,7 @@ consul:
 
 consul-conf:
   image: rijalati/consul-config:0.2
-  network_mode: container:comlink
+  net: "container:${DC}"
   volumes_from:
   - ${DC}
   dns_search:
