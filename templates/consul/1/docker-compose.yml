@@ -1,54 +1,51 @@
-version: '2'
-services:
-  consul:
-    image: rijalati/consul-rancher:0.7.5
-    entrypoint:
-    - /entry.sh
-    domainname: ${DOMAIN}
-    dns_search:
-    - rancher.internal
-    - ${DOMAIN}
-    dns:
-    - 172.17.0.2
-    ports:
-    - "${SERVERPORT}:"8300/tcp
-    - "${SERF_LANPORT}:"8301/tcp
-    - "${SERF_LANPORT}:"8301/udp
-    - "${SERF_WANPORT}:"8302/tcp
-    - "${SERF_WANPORT}:"8302/udp
-    - "${HTTPPORT}:"8500/tcp
-    - "${DNS}:"8600/tcp
-    - "${DNS}:"8600/udp
-    environment:
-    - DC=${DC}
-    - DNS=${DNS}
-    - HTTPPORT=${HTTPPORT}
-    - SERVERPORT=${SERVERPORT}
-    - SERF_WANPORT=${SERF_WANPORT}
-    - SERF_LANPORT=${SERF_LANPORT}
-    volumes:
-    - cccvol:/opt/rancher/config
-    - cccvol:/opt/rancher/ssl
-    - cccvol:/var/consul
-    labels:
-      io.rancher.scheduler.affinity:host_label: dc=${DC}
-      io.rancher.sidekicks: ${DC}-conf
-      io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=${DC}
-      io.rancher.container.dns: true
-      io.rancher.container.pull_image: always
-      io.rancher.container.hostname_override: container_name
-      io.rancher.stack_service.name: ${DC}
-  consul-conf:
-    image: rijalati/consul-config:0.2
-    network_mode: container:comlink
-    volumes_from:
-    - ${DC}
-    dns_search:
-    - rancher.internal
-    labels:
-      io.rancher.container.hostname_override: container_name
-      io.rancher.container.pull_image: always
-      io.rancher.stack_service.name: ${DC}-conf
+consul:
+  image: rijalati/consul-rancher
+  domainname: ${DOMAIN}
+  dns_search:
+  - rancher.internal
+  - ${DOMAIN}
+  dns:
+  - 172.17.0.2
+  ports:
+  - ${SERVERPORT}:8300/tcp
+  - ${SERF_LANPORT}:8301/tcp
+  - ${SERF_LANPORT}:8301/udp
+  - ${SERF_WANPORT}:8302/tcp
+  - ${SERF_WANPORT}:8302/udp
+  - ${HTTPPORT}:8500/tcp
+  - ${DNS}:8600/tcp
+  - ${DNS}:8600/udp
+  environment:
+  - DC=${DC}
+  - DNS=${DNS}
+  - HTTPPORT=${HTTPPORT}
+  - SERVERPORT=${SERVERPORT}
+  - SERF_WANPORT=${SERF_WANPORT}
+  - SERF_LANPORT=${SERF_LANPORT}
+  volumes:
+  - cccvol:/opt/rancher/config
+  - cccvol:/opt/rancher/ssl
+  - cccvol:/var/consul
+  labels:
+    io.rancher.scheduler.affinity:host_label: dc=${DC}
+    io.rancher.sidekicks: ${DC}-conf
+    io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=${DC}
+    io.rancher.container.dns: true
+    io.rancher.container.pull_image: always
+    io.rancher.container.hostname_override: container_name
+    io.rancher.stack_service.name: ${DC}
+
+consul-conf:
+  image: rijalati/consul-config:0.2
+  network_mode: container:comlink
+  volumes_from:
+  - ${DC}
+  dns_search:
+  - rancher.internal
+  labels:
+    io.rancher.container.hostname_override: container_name
+    io.rancher.container.pull_image: always
+    io.rancher.stack_service.name: ${DC}-conf
 volumes:
   cccvol:
     per_container: true
