@@ -1,4 +1,4 @@
-${DC}:
+consul:
   image: rijalati/consul-rancher:0.7.5
   domainname: ${DOMAIN}
   dns_search:
@@ -32,12 +32,12 @@ ${DC}:
     io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=${DC}
     io.rancher.container.dns: true
     io.rancher.container.pull_image: always
-    io.rancher.container.hostname_override: container_name
+    io.rancher.container.hostname_override: ${DC}
     io.rancher.stack_service.name: ${DC}
 
-${DC}-conf:
+consul-conf:
   image: rijalati/consul-config:0.2
-  net: "container:${DC}"
+  net: "container:consul"
   volumes_from:
   - ${DC}
   dns_search:
