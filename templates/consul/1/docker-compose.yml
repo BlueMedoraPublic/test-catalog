@@ -39,7 +39,7 @@ consul-conf:
   image: rijalati/consul-config:0.2
   net: "container:consul"
   volumes_from:
-  - ${DC}
+  - consul
   dns_search:
   - rancher.internal
   labels:
