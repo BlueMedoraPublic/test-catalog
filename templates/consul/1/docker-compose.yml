@@ -11,9 +11,9 @@ consul:
   - SERF_LANPORT=${SERF_LANPORT}
   - SERF_WANPORT=${SERF_WANPORT}
   volumes:
-  - cccvol:/opt/rancher/config
-  - cccvol:/opt/rancher/ssl
-  - cccvol:/var/consul
+  - /opt/rancher/config
+  - /opt/rancher/ssl
+  - /var/consul
   labels:
     io.rancher.scheduler.affinity:host_label: dc=${DC}
     io.rancher.sidekicks: conf
@@ -24,11 +24,12 @@ consul:
 
 conf:
   image: rijalati/consul-config:0.2
-  net: "container:$${service_name}"
+  net: "container:consul"
   volumes_from:
-  - $${service_name} 
+  - consul
   dns_search:
   - rancher.internal
+  - ${DOMAIN}
   labels:
     io.rancher.container.hostname_override: container_name
     io.rancher.container.pull_image: always
