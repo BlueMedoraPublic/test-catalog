@@ -2,7 +2,7 @@
   name: "Consul-Testing"
   description: "Secure Consul cluster"
   version: "0.7.5-rancher1"
-  uuid: consul-0
+  uuid: consul-1
   questions:
     - variable: ca_crt
       label: "CA certificate"
@@ -68,6 +68,9 @@
 consul:
   scale: 3
   retain_ip: true
+  start_on_create: false
+  labels:
+    io.rancher.stack_service.name: ${DC}
   ports:
   - "${SERVERPORT}:8300/tcp"
   - "${SERF_LANPORT}:8301/tcp"
