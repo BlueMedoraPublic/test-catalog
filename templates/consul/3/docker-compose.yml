@@ -16,20 +16,8 @@ consul:
   - /var/consul
   labels:
     io.rancher.scheduler.affinity:host_label: dc=${DC}
-    io.rancher.sidekicks: conf
     io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
     io.rancher.container.dns: true
     io.rancher.container.pull_image: always
     io.rancher.container.hostname_override: container_name
 
-conf:
-  image: bluemedorapublic/consul-config:latest
-  net: "container:consul"
-  volumes_from:
-  - consul
-  dns_search:
-  - rancher.internal
-  - ${DOMAIN}
-  labels:
-    io.rancher.container.hostname_override: container_name
-    io.rancher.container.pull_image: always
