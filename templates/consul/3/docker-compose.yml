@@ -2,7 +2,12 @@ consul:
   image: bluemedorapublic/consul-rancher:0.8.0
   dns_search:
   - rancher.internal
-  - ${DOMAIN}
+  - node.${DC}.consul
+  - node.consul
+  - service.${DC}.consul
+  - service.consul
+  - query.${DC}.consul
+  - query.consul
   environment:
   - DC=${DC}
   - DNS=${DNS}
