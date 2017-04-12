@@ -1,7 +1,7 @@
 .catalog:
   name: "Consul-Testing"
   description: "Secure Consul cluster"
-  version: "0.7.5-rancher1"
+  version: "0.8.0-rancher2"
   uuid: consul-1
   questions:
     - variable: ca_crt

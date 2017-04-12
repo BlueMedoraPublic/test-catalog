@@ -1,5 +1,5 @@
 consul:
-  image: rijalati/consul-rancher:0.7.5
+  image: bluemedorapublic/consul-rancher:0.8.0
   dns_search:
   - rancher.internal
   - ${DOMAIN}
