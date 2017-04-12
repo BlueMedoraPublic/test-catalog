@@ -23,7 +23,7 @@ consul:
     io.rancher.container.hostname_override: container_name
 
 conf:
-  image: rijalati/consul-config:0.2
+  image: blumedorapublic/consul-config:latest
   net: "container:consul"
   volumes_from:
   - consul
