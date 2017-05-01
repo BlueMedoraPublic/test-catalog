@@ -77,7 +77,7 @@
       type: "string"
       default: "dc1"
       required: false
-consul:
+us-east-1:
   scale: 3
   metadata:
     ca.crt: |
