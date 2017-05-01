@@ -1,3 +1,4 @@
+version: '2'
 us-east-1-consul-base:
   image: consul:0.8.1
   entrypoint:
@@ -29,13 +30,15 @@ us-east-1:
   volumes_from:
     - us-east-1-consul-data
 {{- if eq .Values.ui "true"}}
-consul-lb:
+us-east-1-lb:
   ports:
   - 8500:8500/tcp
   expose:
   - 8500:8500/tcp
   tty: true
   image: rancher/load-balancer-service
+  depends_on:
+    - us-east-1
   links:
   - us-east-1:us-east-1-consul-base
   stdin_open: true

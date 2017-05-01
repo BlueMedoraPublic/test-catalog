@@ -1,3 +1,4 @@
+version: '2'
 .catalog:
   name: "Consul"
   description: "Secure Consul cluster"
@@ -68,10 +69,6 @@
       type: "boolean"
       default: false
       required: true
-    - variable: sn
-      label: "Service Name"
-      type: "string"
-      required: true
     - variable: DATACENTER
       label: "Consul Datacenter"
       type: "string"
@@ -101,4 +98,3 @@ us-east-1:
     acl.master_token: "${acl_master_token}"
     ui.enabled: ${ui}
     dc: "${DATACENTER}"
-    sn: "${sn}"
