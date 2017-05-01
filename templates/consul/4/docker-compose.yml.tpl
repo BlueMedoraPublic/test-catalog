@@ -39,5 +39,7 @@ us-east-1-lb:
   image: rancher/load-balancer-service
   links:
   - us-east-1:us-east-1-consul-base
+  labels:
+    io.rancher.scheduler.affinity:host_label: region=us-east-1
   stdin_open: true
 {{- end }}
