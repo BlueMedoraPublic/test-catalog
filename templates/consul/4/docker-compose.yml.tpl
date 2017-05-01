@@ -1,4 +1,4 @@
-consul-base:
+us-east-1-consul-base:
   image: consul:0.8.1
   entrypoint:
     - /opt/rancher/bin/start_consul.sh
@@ -6,8 +6,8 @@ consul-base:
   labels:
     io.rancher.container.hostname_override: container_name
   volumes_from:
-    - consul-data
-consul-data:
+    - us-east-1-consul-data
+us-east-1-consul-data:
   image: alpine:latest
   entrypoint:
     - /bin/true
@@ -20,13 +20,15 @@ consul-data:
     - /opt/rancher/ssl
     - /opt/rancher/config
   net: none
-consul:
+us-east-1:
   image: bluemedorapublic/consul-config:latest
   labels:
     io.rancher.container.hostname_override: container_name
-    io.rancher.sidekicks: consul-base,consul-data
+    io.rancher.sidekicks: us-east-1-consul-base,us-east-1-consul-data
+    io.rancher.scheduler.affinity:host_label: region=us-east-1
+    io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
   volumes_from:
-    - consul-data
+    - us-east-1-consul-data
 {{- if eq .Values.ui "true"}}
 consul-lb:
   ports:
@@ -36,6 +38,6 @@ consul-lb:
   tty: true
   image: rancher/load-balancer-service
   links:
-  - consul:consul-base
+  - us-east-1:us-east-1-consul-base
   stdin_open: true
 {{- end }}
