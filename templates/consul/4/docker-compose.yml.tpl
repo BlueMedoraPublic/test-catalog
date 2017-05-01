@@ -21,7 +21,7 @@ consul-data:
     - /opt/rancher/config
   net: none
 consul:
-  image: bluemedorapublic/consul-config:0.0.1
+  image: bluemedorapublic/consul-config:latest
   labels:
     io.rancher.container.hostname_override: container_name
     io.rancher.sidekicks: consul-base,consul-data
