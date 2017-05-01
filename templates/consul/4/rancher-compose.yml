@@ -68,7 +68,7 @@
       type: "boolean"
       default: false
       required: true
-    - variable: DATACENTER
+    - variable: dc 
       label: "Consul Datacenter"
       type: "string"
       default: "dc1"
@@ -96,4 +96,4 @@ us-east-1:
     acl.down_policy: "${acl_down_policy}"
     acl.master_token: "${acl_master_token}"
     ui.enabled: ${ui}
-    dc: "${DATACENTER}"
+    dc.name: "${dc}"
