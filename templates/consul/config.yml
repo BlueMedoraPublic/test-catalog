@@ -1,5 +1,5 @@
 name: Consul Test Cluster
 description: |
   Consul cluster
-version: 0.8.0-rancher1
+version: 0.8.0-rancher4
 category: Clustering
