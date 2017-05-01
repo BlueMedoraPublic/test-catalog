@@ -1,4 +1,3 @@
-version: '2'
 us-east-1-consul-base:
   image: consul:0.8.1
   entrypoint:
