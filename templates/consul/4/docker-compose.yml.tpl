@@ -26,6 +26,7 @@ us-east-1:
     io.rancher.container.hostname_override: container_name
     io.rancher.sidekicks: us-east-1-consul-base,us-east-1-consul-data
     io.rancher.scheduler.affinity:host_label: region=us-east-1
+    io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
   volumes_from:
     - us-east-1-consul-data
 {{- if eq .Values.ui "true"}}
