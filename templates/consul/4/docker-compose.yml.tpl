@@ -36,8 +36,6 @@ us-east-1-lb:
   - 8500:8500/tcp
   tty: true
   image: rancher/load-balancer-service
-  depends_on:
-    - us-east-1
   links:
   - us-east-1:us-east-1-consul-base
   stdin_open: true
