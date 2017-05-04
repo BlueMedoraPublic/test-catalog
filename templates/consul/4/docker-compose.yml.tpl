@@ -23,7 +23,7 @@ us-east-1-consul-data:
 us-east-1:
   image: bluemedorapublic/consul-config:latest
   environment:
-  - DC=${DC}
+  - DC=${dc}
   - DNS=${DNS}
   - HTTPPORT=${HTTPPORT}
   - SERVERPORT=${SERVERPORT}
