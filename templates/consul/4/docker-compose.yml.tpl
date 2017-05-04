@@ -22,7 +22,15 @@ us-east-1-consul-data:
   net: none
 us-east-1:
   image: bluemedorapublic/consul-config:latest
+  environment:
+  - DC=${DC}
+  - DNS=${DNS}
+  - HTTPPORT=${HTTPPORT}
+  - SERVERPORT=${SERVERPORT}
+  - SERF_LANPORT=${SERF_LANPORT}
+  - SERF_WANPORT=${SERF_WANPORT}
   labels:
+    io.rancher.container.dns: true
     io.rancher.container.hostname_override: container_name
     io.rancher.sidekicks: us-east-1-consul-base,us-east-1-consul-data
     io.rancher.scheduler.affinity:host_label: region=us-east-1

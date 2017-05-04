@@ -73,8 +73,41 @@
       type: "string"
       default: "dc1"
       required: false
+    - variable: SERVERPORT
+      label: "consul server RPC port, default 8300"
+      type: "int"
+      required: false
+    - variable: SERF_LANPORT
+      label: "consul serf LAN port, default 8301"
+      type: "int"
+      required: false
+    - variable: SERF_WANPORT
+      label: "consul serf WAN port, default 8302"
+      type: "int"
+      required: false
+    - variable: HTTPPORT
+      label: "consul HTTP port, default 8500"
+      type: "int"
+      required: false
+    - variable: DNS
+      label: "consul DNS port, default 8600"
+      type: "int"
+      required: false
+
 us-east-1:
   scale: 3
+  retain_ip: true
+  ports:
+  - "${SERVERPORT}:8300/tcp"
+  - "${SERF_LANPORT}:8301/tcp"
+  - "${SERF_LANPORT}:8301/udp"
+  - "${SERF_WANPORT}:8302/tcp"
+  - "${SERF_WANPORT}:8302/udp"
+  - "${HTTPPORT}:8500/tcp"
+  - "${DNS}:8600/tcp"
+  - "${DNS}:8600/udp"
+  - 127.0.0.1:8400/tcp
+  - 127.0.0.1:8400/udp
   metadata:
     ca.crt: |
             ${ca_crt}
