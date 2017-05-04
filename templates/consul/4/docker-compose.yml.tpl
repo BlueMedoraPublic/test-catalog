@@ -29,6 +29,17 @@ us-east-1:
   - SERVERPORT=${SERVERPORT}
   - SERF_LANPORT=${SERF_LANPORT}
   - SERF_WANPORT=${SERF_WANPORT}
+  ports:
+  - "${SERVERPORT}:8300/tcp"
+  - "${SERF_LANPORT}:8301/tcp"
+  - "${SERF_LANPORT}:8301/udp"
+  - "${SERF_WANPORT}:8302/tcp"
+  - "${SERF_WANPORT}:8302/udp"
+  - "${HTTPPORT}:8500/tcp"
+  - "${DNS}:8600/tcp"
+  - "${DNS}:8600/udp"
+  - 127.0.0.1:8400/tcp
+  - 127.0.0.1:8400/udp
   labels:
     io.rancher.container.dns: true
     io.rancher.container.hostname_override: container_name
